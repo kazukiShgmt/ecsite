@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/js/signup.js" th:src="@{/js/signup.js}"></script>
+<script>
+let validatedName; // 重複していないユーザー名を保持(重複チェック毎に更新)
+
+$(() => {
+	$('#validBtn').on('click', validUserName);
+	$('input[name="userName"]').change(checkBlank);
+	$('input[name="userName"]').keyup(detectDiffInput);
+});
+</script>
+<title>ECサイト</title>
+</head>
+<body>
+	
+	<header>
+		<h1>MY EC Site -- Sign up page</h1>
+	</header>
+	
+	<div id="adminPage">
+		<h2>ユーザー　新規登録</h2>
+		<form name="addGoodsForm" id="addGoodsForm" method="post" 
+			action="/ecsite/admin/addUser" th:action="@{/ecsite/admin/addUser}">
+			<p>
+				ユーザー名:<input type="text" name="userName" />
+				<button type="button" id="validBtn" disabled>重複チェック</button>
+			</p>
+			<p>パスワード:<input type="password" name="password" /></p>
+			<p>フルネーム:<input type="text" name="fullName" /></p>
+			<button type="submit" id="submitBtn" disabled>登録</button>
+		</form>
+	
+</body>
+</html>
